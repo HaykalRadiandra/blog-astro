@@ -1,5 +1,47 @@
 ---
+import "../styles/global.css";
+
 const pageTitle = "About Page";
+
+const identity = {
+  firstName: "Sarah",
+  country: "Canada",
+  occupation: "Technical Writer",
+  hobbies: ["photography", "birdwatching", "baseball"],
+};
+
+const softSkills = [
+  "Responsibility",
+  "Team Work",
+  "Problem Solving",
+  "Communication",
+];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+const skillColor = "crimson";
+const fontWeight = "bold";
+const textCase = "uppercase";
+
+const hardSkills = [
+  {
+    category: "language",
+    skills: ["Javascript", "Typescript", "Go", "PHP", "Rust"],
+  },
+  {
+    category: "framework",
+    skills: ["React.js", "Elysia.js", "Node.js"],
+  },
+  {
+    category: "database",
+    skills: ["MySQL", "PostgreSQL", "MongoDB", "Supabase", "Firebase"],
+  },
+  {
+    category: "tools",
+    skills: ["Bun", "Git/Github", "Docker"],
+  },
+];
 ---
 
 <html lang="en">
@@ -10,6 +52,18 @@ const pageTitle = "About Page";
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
+    <style define:vars={{ skillColor, textCase, fontWeight }}>
+      h1 {
+        color: purple;
+        font-size: 2rem;
+      }
+
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
   </head>
   <body>
     <div style="display: flex; gap: 1rem;">
@@ -19,7 +73,27 @@ const pageTitle = "About Page";
     </div>
 
     <h1>{pageTitle}</h1>
-    <h2>... and my new Astro site!</h2>
+
+    <p>Halo, my name is {identity.firstName}</p>
+    <p>
+      i am live in {identity.country}, and my work is {identity.occupation}
+    </p>
+    {identity.hobbies.length >= 2 && (
+      <p>
+        i have three hobbies such as, {identity.hobbies[0]},{" "}
+        {identity.hobbies[1]}, {identity.hobbies[2]}{" "}
+      </p>
+    )}
+
+    {happy && <p>I am happy to be learning Astro!</p>}
+
+    {finished && <p>I finished this tutorial!</p>}
+
+    {goal === 3 ? (
+      <p>My goal is to finish in 3 days.</p>
+    ) : (
+      <p>My goal is not 3 days.</p>
+    )}
 
     <p>
       I am working through Astro's introductory tutorial. This is the second
@@ -30,5 +104,40 @@ const pageTitle = "About Page";
       This site will update as I complete more of the tutorial, so keep checking
       back and see how my journey is going!
     </p>
+
+    <h1>My Skills</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>SOFT SKILLS</th>
+          <th>HARD SKILLS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <ul>
+              {softSkills.length >= 1 &&
+                softSkills.map((skill) => {
+                  return <li class="skill">{skill}</li>;
+                })}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {hardSkills.map((skill) => {
+                return (
+                  <li>
+                    {skill.category.charAt(0).toUpperCase() +
+                      skill.category.slice(1)}{" "}
+                    : {skill.skills.join(", ")}
+                  </li>
+                );
+              })}
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>

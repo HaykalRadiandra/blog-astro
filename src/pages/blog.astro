@@ -1,37 +1,5 @@
 ---
-const pageTitle = "About Me";
-
-const identity = {
-  firstName: "Sarah",
-  country: "Canada",
-  occupation: "Technical Writer",
-  hobbies: ["photography", "birdwatching", "baseball"],
-};
-
-const softSkills = [
-  "Responsibility",
-  "Team Work",
-  "Problem Solving",
-  "Communication",
-];
-const hardSkills = [
-  {
-    category: "language",
-    skills: ["Javascript", "Typescript", "Go", "PHP", "Rust"],
-  },
-  {
-    category: "framework",
-    skills: ["React.js", "Elysia.js", "Node.js"],
-  },
-  {
-    category: "database",
-    skills: ["MySQL", "PostgreSQL", "MongoDB", "Supabase", "Firebase"],
-  },
-  {
-    category: "tools",
-    skills: ["Bun", "Git/Github", "Docker"],
-  },
-];
+const pageTitle = "My Blog";
 ---
 
 <html lang="en">
@@ -51,6 +19,7 @@ const hardSkills = [
     </div>
 
     <h1>{pageTitle}</h1>
+    <h2>... and my new Astro site!</h2>
     <p>This is where I will post about my journey learning Astro.</p>
 
     <ul>
@@ -64,51 +33,5 @@ const hardSkills = [
         <a href="/posts/post-3/">Post 3</a>
       </li>
     </ul>
-
-    <p>Halo, my name is {identity.firstName}</p>
-    <p>
-      i am live in {identity.country}, and my work is {identity.occupation}
-    </p>
-    {identity.hobbies.length >= 2 && (
-      <p>
-        i have three hobbies such as, {identity.hobbies[0]},{" "}
-        {identity.hobbies[1]}, {identity.hobbies[2]}{" "}
-      </p>
-    )}
-
-    <h1>My Skills</h1>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>SOFT SKILLS</th>
-          <th>HARD SKILLS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <ul>
-              {softSkills.length >= 1 &&
-                softSkills.map((skill) => {
-                  return <li>{skill}</li>;
-                })}
-            </ul>
-          </td>
-          <td>
-            <ul>
-              {hardSkills.map((skill) => {
-                return (
-                  <li>
-                    {skill.category.charAt(0).toUpperCase() +
-                      skill.category.slice(1)}{" "}
-                    : {skill.skills.join(", ")}
-                  </li>
-                );
-              })}
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </body>
 </html>
