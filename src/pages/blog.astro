@@ -1,4 +1,8 @@
 ---
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+
 const pageTitle = "My Blog";
 ---
 
@@ -12,11 +16,7 @@ const pageTitle = "My Blog";
     <title>Astro</title>
   </head>
   <body>
-    <div style="display: flex; gap: 1rem;">
-      <a href="/">Home</a>
-      <a href="/about/">About</a>
-      <a href="/blog/">Blog</a>
-    </div>
+    <Header />
 
     <h1>{pageTitle}</h1>
     <h2>... and my new Astro site!</h2>
@@ -33,5 +33,6 @@ const pageTitle = "My Blog";
         <a href="/posts/post-3/">Post 3</a>
       </li>
     </ul>
+    <Footer />
   </body>
 </html>
